@@ -2,9 +2,9 @@ name: Rust
 
 on:
   push:
-    branches: [ principale ]
+    branches: [ fő ]
   pull_request:
-    branches: [ principale ]
+    branches: [ fő ]
 
 jobs:
   ci:
@@ -26,7 +26,7 @@ jobs:
           toolchain: ${{ matrix.rust }}
           override: true
 
-      - name: Lancer les exemples
+      - name: Példák futtatása
         uses: actions-rs/cargo@v1
         with:
           command: run

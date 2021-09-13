@@ -1,85 +1,85 @@
-rouille::rouille! {
-    externe cagette rouille;
+rozsda::rozsda! {
+    külső láda rozsda;
 
-    utilisons std::collections::Dictionnaire comme Dico;
+    használj std::collections::Hasítótábla mint Tábla;
 
-    convention CléValeur {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine);
-        fonction lire(&soi, clé: Chaine) -> Résultat<PeutÊtre<&Chaine>, Chaine>;
+    jellemvonás KulcsÉrték {
+        függvény ír(&önmaga, kulcs: Zsinór, érték: Zsinór);
+        függvény olvas(&önmaga, kulcs: Zsinór) -> Eredmény<Talán<&Zsinór>, Zsinór>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaine, Chaine>> = Rien;
+    statikus megváltoztatható SZÓTÁR: Talán<Tábla<Zsinór, Zsinór>> = Semennyi;
 
-    structure Concrète;
+    struktúra Konkrét;
 
-    réalisation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine) {
-            soit dico = dangereux {
-                DICTIONNAIRE.prendre_ou_insérer_avec(Défaut::défaut)
+    kivitelezés KulcsÉrték ehhez Konkrét {
+        függvény ír(&önmaga, kulcs: Zsinór, érték: Zsinór) {
+            legyen szótár = veszélyes {
+                SZÓTÁR.megszerez_vagy_beilleszt_ezzel(Alapértelmezett::alapértelmezett)
             };
-            dico.insérer(clé, valeur);
+            szótár.beszúr(kulcs, érték);
         }
-        fonction lire(&soi, clé: Chaine) -> Résultat<PeutÊtre<&Chaine>, Chaine> {
-            si soit Quelque(dico) = dangereux { DICTIONNAIRE.en_réf() } {
-                Bien(dico.lire(&clé))
-            } sinon {
-                Arf("fetchez le dico".vers())
+        függvény olvas(&önmaga, kulcs: Zsinór) -> Eredmény<Talán<&Zsinór>, Zsinór> {
+            ha legyen Néhány(szótár) = veszélyes { SZÓTÁR.mint_referencia() } {
+                Jó(szótár.megszerez(&kulcs))
+            } különben {
+                Jaj("nincs szótár".ebbe())
             }
         }
     }
 
-    public(cagette) fonction peut_etre(i: u32) -> PeutÊtre<Résultat<u32, Chaine>> {
-        si i % 2 == 1 {
-            si i == 42 {
-                Quelque(Arf(Chaine::depuis("merde")))
-            } sinon {
-                Quelque(Bien(33))
+    nyilvános(láda) függvény talán(i: u32) -> Talán<Eredmény<u32, Zsinór>> {
+        ha i % 2 == 1 {
+            ha i == 42 {
+                Néhány(Jaj(Zsinór::ebből("bazdmeg")))
+            } különben {
+                Néhány(Jó(33))
             }
-        } sinon {
-            Rien
+        } különben {
+            Semennyi
         }
     }
 
-    asynchrone fonction exemple() {
+    aszinkron függvény példa() {
     }
 
-    asynchrone fonction exemple2() {
-        exemple().attend;
+    aszinkron függvény második_példa() {
+        példa().megvár;
     }
 
-    fonction principale() {
-        soit mutable x = 31;
+    függvény fő() {
+        legyen megváltoztatható x = 31;
 
-        selon x {
+        egyeztet x {
             42 => {
-                affiche!("omelette du fromage")
+                sorkiír!("kürtös kalács")
             }
-            _ => affiche!("voila")
+            _ => sorkiír!("íme")
         }
 
-        pour i de 0..10 {
-            soit val = boucle {
-                arrête i;
+        minden i ebben 0..10 {
+            legyen val = ciklus {
+                félbeszakít i;
             };
 
-            tant que x < val {
+            amíg nincs x < val {
                 x += 1;
             }
 
-            x = si soit Quelque(resultat) = peut_etre(i) {
-                resultat.déballer()
-            } sinon {
+            x = ha legyen Néhány(eredmény) = talán(i) {
+                eredmény.kibont()
+            } különben {
                 12
             };
         }
 
-        //secondaire();
+        // másodlagos();
     }
 
-    #[légal(code_inaccessible)]
-    fonction secondaire() {
-        merde!("oh non"); // for the true French experience
-        calisse!("tabernacle"); // for friends speaking fr-ca
-        oups!("fetchez la vache"); // in SFW contexts
+    #[megenged(code_inaccessible)]
+    függvény másodlagos() {
+        bazdmeg!("óh ne"); // for the true Hungarian experience
+        kurva_anyját!("mi a rák"); // for friends who want to be more articulate
+        pánik!("hozz egy sört"); // in SFW contexts
     }
 }

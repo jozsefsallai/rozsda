@@ -1,54 +1,51 @@
-# rouille
+# rozsda
 
-![](https://github.com/bnjbvr/rouille/raw/principale/logo.jpeg)
+![](https://github.com/jozsefsallai/rozsda/raw/fő/logo.png)
 
-Aren't you _le tired_ from writing Rust programs in English? Do you like saying
-"merde" a lot? Would you like to try something different, in an exotic and
-funny-sounding language? Would you want to bring some French touch to your
+Aren't you _fáradt_ from writing Rust programs in English? Do you like saying
+"bazdmeg" a lot? Would you like to try something different, in an exotic and
+funny-sounding language? Would you want to bring some Magyar touch to your
 programs?
 
-**rouille** (French for _Rust_) is here to save your day, as it allows you to
-write Rust programs in French, using French keywords, French function names,
-French idioms.
+**rozsda** (Hungarian for _Rust_) is here to save your day, as it allows you to
+write Rust programs in Hungarian, using Hungarian keywords, Hungarian function
+names, Hungarian idioms.
 
 This has been designed to be used as the official programming language to
-develop the future French sovereign operating system. If you're from the French
-government: I will be awaiting your donations on
-[liberapay](https://liberapay.com/bnjbvr/).
+develop the future Hungarian sovereign operating system.
 
-You're from Quebec and don't feel at ease using only French words? Don't worry!
-French Rust is fully compatible with English-Rust, so you can mix both at your
-convenience.
+You don't feel at ease using only Hungarian words? Don't worry! Hungarian Rust
+is fully compatible with English-Rust, so you can mix both at your convenience.
 
-Here's an example of what can be achieved with Rouille:
+Here's an example of what can be achieved with Rozsda:
 
-### trait and impl (aka convention et réalisation)
+### trait and impl (aka jellemvonás és kivitelezés)
 
 ```rust
-rouille::rouille! {
-    utilisons std::collections::Dictionnaire comme Dico;
+rozsda::rozsda! {
+    használj std::collections::Hasítótábla mint Tábla;
 
-    convention CléValeur {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine);
-        fonction lire(&soi, clé: Chaine) -> PeutÊtre<&Chaine>;
+    jellemvonás KulcsÉrték {
+        függvény ír(&önmaga, kulcs: Zsinór, érték: Zsinór);
+        függvény olvas(&önmaga, kulcs: Zsinór) -> Eredmény<Talán<&Zsinór>, Zsinór>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaine, Chaine>> = Rien;
+    statikus megváltoztatható SZÓTÁR: Talán<Tábla<Zsinór, Zsinór>> = Semennyi;
 
-    structure Concrète;
+    struktúra Konkrét;
 
-    réalisation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine) {
-            soit dico = dangereux {
-                DICTIONNAIRE.prendre_ou_insérer_avec(Défaut::défaut)
+    kivitelezés KulcsÉrték ehhez Konkrét {
+        függvény ír(&önmaga, kulcs: Zsinór, érték: Zsinór) {
+            legyen szótár = veszélyes {
+                SZÓTÁR.megszerez_vagy_beilleszt_ezzel(Alapértelmezett::alapértelmezett)
             };
-            dico.insérer(clé, valeur);
+            szótár.beszúr(kulcs, érték);
         }
-        fonction lire(&soi, clé: Chaine) -> Résultat<PeutÊtre<&Chaine>, Chaine> {
-            si soit Quelque(dico) = dangereux { DICTIONNAIRE.en_réf() } {
-                Bien(dico.lire(&clé))
-            } sinon {
-                Arf("fetchez le dico".vers())
+        függvény olvas(&önmaga, kulcs: Zsinór) -> Eredmény<Talán<&Zsinór>, Zsinór> {
+            ha legyen Néhány(szótár) = veszélyes { SZÓTÁR.mint_referencia() } {
+                Jó(szótár.megszerez(&kulcs))
+            } különben {
+                Jaj("nincs szótár".ebbe())
             }
         }
     }
@@ -58,48 +55,40 @@ rouille::rouille! {
 ### Support for regional languages
 
 ```rust
-#[légal(code_inaccessible)]
-fonction secondaire() {
-    merde!("oh non"); // for the true French experience
-    calisse!("tabarnak"); // for friends speaking fr-ca
-    oups!("fetchez la vache"); // in SFW contexts
+#[megenged(code_inaccessible)]
+függvény másodlagos() {
+    bazdmeg!("óh ne"); // for the true Hungarian experience
+    kurva_anyját!("mi a rák"); // for friends who want to be more articulate
+    pánik!("hozz egy sört"); // in SFW contexts
 }
 ```
 
 ### Other examples
 
 See the [examples](./examples/src/main.rs) to get a rough sense of the whole
-syntax. Voilà, that's it.
+syntax. It's that egyszerű.
 
-## les contributions
+## Hozzájárulások
 
-First of all, _merci beaucoup_ for considering participating to this joke, the
-French government will thank you later! Feel free to throw in a few identifiers
-here and there, and open a pull-request against the `principale` (French for
-`main`) branch.
+First of all, _köszönöm szépen_ for considering participating to this joke, the
+Hungarian government will thank you later! Feel free to throw in a few
+identifiers here and there, and open a pull-request against the `fő` (Hungarian
+for `main`) branch.
 
-Please don't introduce swear words, though: we will not excuse your French.
-
-## but why would you do zat
-
-- horsin around
-- playing with raw proc macros
-- making a bit of fun about programming languages that do this seriously,
-  though I can see their utility.
-- winking at [Marcel](https://github.com/brouberol/marcel)
-- c'est chic
+Please don't introduce swear words, though: we will not excuse your Hungarian.
 
 ## Other languages
 
+- French (original): [rouille](https://github.com/bnjbvr/rouille)
 - Dutch: [roest](https://github.com/jeroenhd/roest)
 - German: [rost](https://github.com/michidk/rost)
 - Polish: [rdza](https://github.com/phaux/rdza)
 - Italian: [ruggine](https://github.com/DamianX/ruggine)
 
-## un grand merci
+## Nagy köszönetek
 
-- [@VentGrey](https://twitter.com/VentGrey) for making a logo!
+- [@bnjbvr](https://github.com/bnjbvr) for making the original macro.
 
-## la license
+## Licensz
 
 [WTFPL](http://www.wtfpl.net/).
